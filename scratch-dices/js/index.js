@@ -30,7 +30,7 @@ $(function() {
    var die = 1;
    let r = true;
    if(results.chance<MAX){
-     r = confirm("Sicuro di voler rilanciare i dadi? I tentativi sono limitati!");
+     r = confirm("Sicuro di voler rilanciare i dadi? Hai solo altri "+results.chance+" tentativi!");
    }
    if (r == true) {
     results.chance = results.chance -1;
