@@ -1,8 +1,9 @@
-var results = { chance: 3, dices: []}
+const MAX = 3;
+var results = { chance: MAX, dices: []}
 const baseURL = "img/dadiv2/";
 
 function loadResults(){
-    let placeHolder = [3,"dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png"];
+    let placeHolder = [MAX,"dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png"];
     let itemsArray = localStorage.getItem('_BuccaneerDev_dices') ? JSON.parse(localStorage.getItem('_BuccaneerDev_dices')) : placeHolder;
     results = {dices: itemsArray.slice(-1,1), chance: parseInt(itemsArray[0])};
     let i =1;
@@ -27,16 +28,22 @@ $(function() {
  $('.random').on("click",function(){
    if (results.chance <= 0) return null;
    var die = 1;
-   results.chance = results.chance -1;
-   $( "#chance" ).text(results.chance);
-   results.dices = [];
-   $('td:first-child').each(function() {
-        let rndX = rngDice();
-        let dieName = "dado-"+die+"-"+rndX+".png";
-        results.dices.push(dieName);
-        $(this).children(":first").attr('src',baseURL+dieName);
-        die += 1;
+   let r = true;
+   if(results.chance<MAX){
+     r = confirm("Sicuro di voler rilanciare i dadi? I tentativi sono limitati!");
+   }
+   if (r == true) {
+    results.chance = results.chance -1;
+    $( "#chance" ).text(results.chance);
+    results.dices = [];
+    $('td:first-child').each(function() {
+      let rndX = rngDice();
+      let dieName = "dado-"+die+"-"+rndX+".png";
+      results.dices.push(dieName);
+      $(this).children(":first").attr('src',baseURL+dieName);
+       die += 1;
     });
     saveResults();
+   }
  });
 });
