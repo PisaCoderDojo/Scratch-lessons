@@ -1,5 +1,5 @@
 var results = { chance: 3, dices: []}
-const baseURL = "https://raw.githubusercontent.com/PisaCoderDojo/Scratch-lessons/master/scratch-dices/img/dadiv2/";
+const baseURL = "img/dadiv2/";
 
 function loadResults(){
     let placeHolder = [3,"dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png","dado-0.png"];
